@@ -1,0 +1,18 @@
+--  WEB --
+
+100 DoNotTrek - Star Trek Themed Fan Page, Privacy advocate evaluates DNT header to get value, commnad injectable (Python Server)
+200 SeaQuell - Boating Company Website, SQL injection to get to employee panel + command injection on admin tools (Python Server)
+300 MakeIcon v20.16.37.17 - Uplaod image file to convert to Windows ICO format. Accepts MVG. Uses ImageMagick from 2015; see CVE-2016-3717 et al. (Python Server)
+400 Monolith - RFC Index with Search Tool, C++ custom web server with path traversal in cgi-bin, stripped static-linked QEMU+ARM (C Server)
+
+-- SHELLCODE --
+
+500? DasRücklauf - Everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
+
+-- PWNABLES --
+
+100 HTTPSH - Give the clue as https://website/, but have it just be an SSL wrapped shell session. Player must figure out that their GET / is getting executed (since browsers will just bail).
+
+-- REVERSE ENGINEERING --
+
+
