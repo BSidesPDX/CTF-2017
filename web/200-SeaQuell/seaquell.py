@@ -37,11 +37,6 @@ class ReqHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                self.end_headers()
                self.wfile.write('<h1>401</h1>Access Denied')
                return
-        if self.path.startswith('/employees-only/debugTest'):
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(eval(self.headers['X-Test']))
-            return
         return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
 s = SimpleHTTPServer.BaseHTTPServer.HTTPServer(addr,ReqHandler)
