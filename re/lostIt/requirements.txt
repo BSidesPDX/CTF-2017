@@ -1,0 +1,4 @@
+uuid
+sqlalchemy
+sqlalchemy_utils
+pycrypto

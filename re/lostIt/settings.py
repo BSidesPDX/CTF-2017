@@ -1,0 +1,1 @@
+DB = 'sqlite:///./secureNotes.db'
