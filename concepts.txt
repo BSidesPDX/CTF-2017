@@ -7,6 +7,8 @@
 
 -- SHELLCODE --
 
+100 - Player must write ARM assembly to cat a flag using a Linux syscall, but can only use 16 bytes of assembly. 
+
 500? DasRücklauf - Everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
 
 -- PWNABLES --
@@ -15,4 +17,4 @@
 
 -- REVERSE ENGINEERING --
 
-
+100 lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
