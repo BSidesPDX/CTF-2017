@@ -1,0 +1,9 @@
+CREATE TABLE employees(
+    username TEXT,
+    password TEXT,
+    title TEXT,
+    fullName TEXT,
+    accessLevel INTEGER);
+
+INSERT INTO employees VALUES('sparrowj','pirat3','Capitan','Jack Sparrow',2);
+INSERT INTO employees VALUES('tillersonr','drillBabyDrill','CEO','Rexamillion Tillerson',1);
