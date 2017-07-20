@@ -9,6 +9,7 @@ class ReqHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.send_response(500)
 
     def do_GET(self):
+        print self.path
         if ('..' in self.path or 
            not (self.path.endswith('.html') or
                 self.path.endswith('/') or

@@ -1,0 +1,58 @@
+<html>
+<head>
+<style>
+    { margin: 0; padding: 0; }
+
+    html { 
+        background: url('/static/stars.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+	.label {
+		color: white;
+		max-width: 300px;
+		font-size: 24px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+	}
+</style>
+<body>
+<center>
+<div id="label" class="label">
+<center>
+<img src="/static/starship.png">
+<marquee><b>Do Not Track is {{dnt}}!</b></marquee>
+</center>
+</div>
+<script>
+var x = 30;
+var y = 30;
+var xdir = 10;
+var ydir = 10;
+function moveLabel(){
+   var l = document.getElementById('label')
+   l.style.left = x + 'px';
+   l.style.top = y + 'px';
+   x += xdir;
+   y += ydir;
+   if (x > window.innerWidth-420){
+       xdir = -10;
+   }
+   if (x < 50) {
+       xdir = 10;
+   }
+   if (y > window.innerHeight-300){
+       ydir = -10;
+   }
+   if (y < 50) {
+       ydir = 10;
+   }
+}
+setInterval(moveLabel,50);
+</script>
+</center>
+</body>
+</html> 
