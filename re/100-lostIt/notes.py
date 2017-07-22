@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, String, DateTime, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
 from settings import DB
-import uuid 
+from random import randint
 
 Base = declarative_base()
 
@@ -29,12 +29,14 @@ def passwordHash(password, curTime):
     return str(base64.b64encode(str(encryptedPassword).encode()))
 
 def secretNotes(passwordHash, secretNote):
-    return secretNote
+    import base64
+    
+    secretNote = ''.join(chr(ord(a) ^ ord(b)) for a,b in zip(secretNote,passwordHash))
+    return str(base64.b64encode(str(secretNote).encode()))
 
 # I forgot to save ! ! ! 
 def viewNotes():
     return 
-
 
 def addNote(password, secretNote):
     engine = create_engine(DB)
@@ -46,15 +48,18 @@ def addNote(password, secretNote):
 
     hashed = passwordHash(password, curTime)
     secret = secretNotes(hashed, secretNote)
-    
+  
+    min_ = 100
+    max_ = 1000000000
+    rand = randint(min_, max_)
 
-    '''
+
     conn.execute(vmListing.insert(),[
-    {'ID': uuid.uuid4(),
-     'dateAdded': curTime,
+    {'ID': rand,
      'notes': secret,
+     'dateAdded': curTime,
      'password': hashed
-    }]) '''
+    }]) 
 
 if __name__ == "__main__":
     from sqlalchemy import create_engine
