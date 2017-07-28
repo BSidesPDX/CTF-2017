@@ -1,19 +1,47 @@
+#define _GNU_SOURCE  
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
 #include <netinet/in.h>
-#include <string.h>
 #include <signal.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <errno.h>
+#include <sys/sendfile.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
 
 char* error404 = "<html><body><center><h1>404 File Not Found</h1></center></body></html>";
 char* error431 = "<html><body><center><h1>431 Bad Strategy</h1></center></body></html>";
 char* error500 = "<html><body><center><h1>500 Caught You</h1></center></body></html>";
-char* cssData = "body { font-family: helvetica; color: #335533;}";
-char* mainBody = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"rfc.css\"></head>"
-                 "<body><center><h1>RFC Search Tool</h1></body>";
+char* cssData = "body { font-family: helvetica; color: #335533;}\n"
+                ".search {border: 2px solid #335533; border-radius: 5px; padding: 10px}";
+char* mainBody = "<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"rfc.css\">"
+"<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>"
+                 "<script>function onSearch(){"
+                 "$.getJSON(\"/cgi-bin/search?term=\"+$(\"#term\").val(),function(data){"
+                 "r = data.results;"
+                 "out = \"Search Results: \"+(r.length-1)+\" records.<BR><BR><TABLE>\";"
+                 "for (var i=0; i < r.length; i++){ "
+                 "rfc = Math.round(r[i].split(' ')[0]);"
+                 "if (rfc == 0) { continue; }"
+                 "out += \"<tr><td valign=top><button onClick='onDL(\\\"rfc\"+rfc+\"\\\")'>View</button>"
+                 "</td><td style='max-width:300px'>\"+r[i]+\"</td></tr>\"; }"
+                 "out += \"</TABLE>\";"
+                 "$(\"#results\").html(out);"
+                 "});}\n"
+                 "function onDL(rfc){"
+                 "$.get(\"/cgi-bin/retrieve?rfc=\"+rfc+\"&type=txt\",function(data){"
+                 "$(\"#results\").html(\"<pre>\"+data+\"</pre>\");"
+                 "});}</script></head>"
+                 "<body><center><h1>RFC Search Tool</h1>"
+                 "<table width=0><tr><td>"
+                 "<div class=\"search\">Search: <input id=\"term\" type='text' />"
+                 "<button onClick=\"onSearch()\">Go!</button></div>"
+                 "<br><br>"
+                 "<div class=\"search\" id=\"results\">No results.</div>"
+                 "</td></tr></table></form></center></body></html>";
 char *respFormat = "HTTP/1.0 200 OK\r\nContent-Type: %s\r\nContent-Length: %d\r\n\r\n%s";
 
 int defang(char *postData){
@@ -50,24 +78,28 @@ void append(char **dest, size_t *len, char *src){
 int processCgi(int sockfd, char *request){
     char *cgi = strstr(request, "GET /cgi-bin/")+13;
     char *cgiEnd = strstr(cgi, "?");
-    char *queryStringEnd = strstr(cgi, " ");
+    char *queryStringEnd;
     char *body;
     char *queryString = cgiEnd+1;
     char buffer[8192];
-    if (cgiEnd == 0 || cgi == 0 || queryStringEnd == 0){
+    if (cgiEnd == 0 || cgi == 0){
         printf("cgi failed.\n");
         return -1;
     }
-    queryStringEnd[0] = 0;
+    queryStringEnd = strstr(cgi, " ");
+    if (queryStringEnd){
+        queryStringEnd[0] = 0;
+    }
     cgiEnd[0] = 0;
-    printf("cgi: \"%s\" defang: \"%s\"\n",cgi,queryString);
-    defang(queryString);
+    printf("cgi: \"%s\" query: \"%s\"\n",cgi,queryString);
     if (strcmp(cgi,"search") == 0){
         FILE *fp;
         char *line = NULL;
         size_t len = 0;
         size_t outlen = 0;
         ssize_t read;
+        queryString = strstr(queryString,"term=")+5;
+        defang(queryString);
         printf("handling search\n");
         sprintf(buffer,"grep -i \"%s\" index.txt",queryString);
         printf("buffer: %s\n",buffer);
@@ -87,7 +119,6 @@ int processCgi(int sockfd, char *request){
             append(&body,&outlen,"\",");
             if (strlen(body) > 6969) break;
    		}
-        printf("body: %s\n",body);
     	if (ferror(fp)) {
         	return -1;
     	}
@@ -96,13 +127,37 @@ int processCgi(int sockfd, char *request){
         append(&body,&outlen,"\"\"]}");
         snprintf(buffer,8192,respFormat,"application/json",strlen(body),body);
         free(body);
+        send(sockfd,buffer,strlen(buffer),0);
     } else if (strcmp(cgi,"retrieve") == 0){
-        body = "{'result':'Not Found'}";
-        snprintf(buffer,8192,respFormat,"application/json",strlen(body),body);
+        char *queryArg;
+        char *rfcFilePtr;
+        struct {
+            char rfcFile[256];
+            int ret;
+            struct stat s;
+            int file;
+        } fdat;
+        memset(fdat.rfcFile,0,256);
+        queryArg = strstr(queryString,"rfc=")+4;
+        strcpy((fdat.rfcFile),"rfc/");
+        rfcFilePtr = (fdat.rfcFile)+4;
+        for (int i=0; i < 256 && queryArg[i] != '&'; i++){
+            *rfcFilePtr = queryArg[i];
+            rfcFilePtr++;
+        }
+        strcat(rfcFilePtr,".txt");
+        memset(&(fdat.s),0,sizeof(struct stat));
+        fdat.ret = 0;
+        fdat.ret = stat(fdat.rfcFile,&(fdat.s));
+        snprintf(buffer,8192,respFormat,"text/plain",fdat.s.st_size,"");
+        fdat.file = open(fdat.rfcFile,O_RDONLY);
+        printf("fid: %d, file: %s, ret: %d, size: %d\n",fdat.file,fdat.rfcFile,fdat.ret,(int)fdat.s.st_size);
+        send(sockfd,buffer,strlen(buffer),0);
+        sendfile(sockfd,fdat.file,NULL,fdat.s.st_size);
+        close(fdat.file);
     } else {
         return -1;
     }
-    send(sockfd,buffer,strlen(buffer),0);
     return 0;
 }
 
@@ -114,7 +169,8 @@ int handleClient(int sockfd){
     buffer[0] = 0;
     alarm(5);
     body = error404;
-    while(strstr(buffer,"\r\n\r\n") == 0){
+    memset(buffer,0,2048);
+    while(memmem(buffer,2048,"\r\n\r\n",4) == 0){
         len = recv(sockfd,recvPtr,2047-strlen(recvPtr),0);
         if (len <= 0){
             body = error431;
