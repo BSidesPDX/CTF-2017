@@ -19,7 +19,7 @@
 
 -- REVERSE ENGINEERING --
 
-100 xordoz - Basic XOR on a string for the password flag. Some anti-RE. Good to get people going. 
+100 xordoz - Basic XOR on a string for the password flag. Good to get people going. Pull up that disassembler!  
 
 200 lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
 
