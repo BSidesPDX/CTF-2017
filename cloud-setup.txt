@@ -1,0 +1,13 @@
+Install prereqs:
+https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu
+
+Log on to the GCP console.
+Create a new cluster (5 micro nodes, for example)
+Follow the Details->Connect To Cluster instructions to run "kubectl proxy"
+Now the kubectl commands should work and you can launch deployments and services on this cluster
+
+Notes: To firewall the cloud services on GCP, edit the yaml for the service. After type: LoadBalancer, add:
+   loadBalancerSourceRanges:
+     - <cidr>
+     - <cidr>
+Where cidr can be <ip>/32 for a single host.
