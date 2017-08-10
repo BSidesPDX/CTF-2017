@@ -4,10 +4,12 @@ Template for service creation with docker and kubernetes
 
 ## Directory Structure
 
+```
 Challenge
 | - src 
 | - deployment
 | - solution
+```
 
 ## Deploy
 
@@ -15,7 +17,7 @@ Challenge
 1. make container
 1. make push
 1. make deploy
-1. make server
+1. make serve
 
 ## Delete
 
