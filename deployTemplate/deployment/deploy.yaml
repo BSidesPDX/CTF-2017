@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: quickstart-image
-          image: us.gcr.io/testing-bsidespdx-ctf-2017/quickstart-image
+          image: gcr.io/testing-bsidespdx-ctf-2017/quickstart-image
           imagePullPolicy: Always
           securityContext:
             privileged: false
