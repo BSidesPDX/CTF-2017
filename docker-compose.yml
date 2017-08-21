@@ -1,0 +1,7 @@
+# docker-compose build && docker-compose up -d
+
+# Pwn
+leek:
+    build: ./pwn/200-leek/src
+    ports:  
+        - 9000:2007
