@@ -7,7 +7,9 @@ DOCKER_IMAGE := quickstart-image
 
 CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 
-target: container push 
+target: container push deploy server
+
+clean: delete deleteKube
 
 # Docker Configurations
 
