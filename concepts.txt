@@ -15,6 +15,8 @@
 
 100 HTTPSH - Give the clue as https://website/, but have it just be an SSL wrapped shell session. Player must figure out that their GET / is getting executed (since browsers will just bail).
 
+200 Leek - The player discovers a web service that is still in early beta stages on that internet that should never have been released. The binary allows the player to perform an information leak which will help bypass ASLR as the binary is exploitable by a trivial strcpy. 
+
 300 2048 - Give the player 2048 to play in a terminal. The catch is, this was a CTF challenge for the 2014 Pwnium CTF which has a solution. This challenge will trick the player into thinking they need to play 2048 and win when the challenge is really a format string bug to run shellcode written to the games input buffer. 
 
 -- REVERSE ENGINEERING --
