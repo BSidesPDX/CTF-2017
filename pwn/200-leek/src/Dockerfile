@@ -20,4 +20,4 @@ RUN chmod 700 /opt/leek/flag
 USER leek
 RUN make
 EXPOSE 2007
-CMD ["./leek"]
+CMD ["./leek", "&"]
