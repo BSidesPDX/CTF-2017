@@ -12,4 +12,4 @@ def index():
         dnt = 'OFF'
     return render_template('dnt.html', dnt=dnt)
 
-app.run()
+app.run(host='0.0.0.0')
