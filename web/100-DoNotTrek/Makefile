@@ -27,11 +27,11 @@ delete:
 # Kubernetes
 
 deploy:
-	kubectl create -f deployment/deploy.yaml
+	cat deployment/deploy.yaml | sed 's/\%PROJECT_ID\%/${PROJECT_ID}/g' | kubectl create -f -
 
 serve:
 	kubectl create -f deployment/service.yaml
 
 deleteKube:
-	kubectl delete -f deployment/deploy.yaml
+	cat deployment/deploy.yaml | sed 's/\%PROJECT_ID\%/${PROJECT_ID}/g' | kubectl delete -f -
 	kubectl delete -f deployment/service.yaml

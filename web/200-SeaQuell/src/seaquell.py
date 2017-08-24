@@ -1,8 +1,12 @@
 #!/usr/bin/python
+
+#hint:
+#employees-only/flag
+
 import SimpleHTTPServer
 import sqlite3
 
-addr = ('localhost',8000)
+addr = ('0.0.0.0',8000)
 
 class ReqHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_HEAD(self):

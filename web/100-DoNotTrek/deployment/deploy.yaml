@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: web100
-          image: us.gcr.io/bsides-ctf-2017/web100
+          image: gcr.io/%PROJECT_ID%/web100
           imagePullPolicy: Always
           securityContext:
             privileged: false

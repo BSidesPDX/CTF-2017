@@ -1,7 +1,7 @@
 # export project_ID="your google platform project ID"
 PROJECT_ID ?= testing-bsidespdx-ctf-2017
 REGISTRY := gcr.io
-DOCKER_IMAGE := web400
+DOCKER_IMAGE := web200
 
 .PHONY: container push test
 
@@ -12,7 +12,6 @@ target: container push
 # Docker Configurations
 
 container:
-	make -C src
 	docker build --no-cache --tag ${CONTAINER_TAG} src
 
 push: 

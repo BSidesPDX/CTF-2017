@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: web400
+  name: web200
 spec:
   replicas: 1
   template:
     metadata:
-      name: web400
+      name: web200
       labels:
-        app: web400
+        app: web200
     spec:
       containers:
-        - name: web400
-          image: gcr.io/%PROJECT_ID%/web400
+        - name: web200
+          image: gcr.io/%PROJECT_ID%/web200
           imagePullPolicy: Always
           securityContext:
             privileged: false
