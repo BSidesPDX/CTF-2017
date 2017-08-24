@@ -16,3 +16,6 @@ kubectl create -f service.yaml
 
 
 
+#!/bin/bash
+
+cp -r index.txt flag rfcsearch rfc $BASE
