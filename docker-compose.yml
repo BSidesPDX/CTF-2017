@@ -1,7 +1,25 @@
+# make -C ./web/400-Monolith/src
 # docker-compose build && docker-compose up -d
+
 
 # Pwn
 leek:
     build: ./pwn/200-leek/src
     ports:  
         - 9000:2007
+
+# Web
+donottrek:
+    build: ./web/100-DoNotTrek/src
+    ports:
+        - 1588:5000
+
+seaquell:
+    build: ./web/200-SeaQuell/src
+    ports:
+        - 1589:8000
+
+monolith:
+    build: ./web/400-Monolith/src
+    ports:
+        - 1590:5001
