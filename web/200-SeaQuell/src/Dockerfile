@@ -10,8 +10,8 @@ ADD employees-only /employees-only
 #just in case someone finds an additional exploit:
 RUN ln -s /employees-only/flag /flag
 
-# Open port 5000 for serving the webpage, mapped to 80 by container engine
-EXPOSE 5000
+# Open port 8000 for serving the webpage, mapped to 1589 by container engine
+EXPOSE 8000
 
 # Run app.py when the container launches
 CMD ["su","-s","/bin/sh","nobody","-c","python seaquell.py"]

@@ -4,7 +4,7 @@ metadata:
   name: web200
 spec:
   ports:
-   - port: 80
+   - port: 1589
      targetPort: 8000
   selector:
     app: web200
