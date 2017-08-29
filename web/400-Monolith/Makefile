@@ -3,11 +3,11 @@ PROJECT_ID ?= testing-bsidespdx-ctf-2017
 REGISTRY := gcr.io
 DOCKER_IMAGE := web400
 
-.PHONY: container push test
-
 CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 
-target: container push 
+target: container push deploy serve
+
+clean: deleteDocker deleteKube
 
 # Docker Configurations
 
@@ -22,7 +22,7 @@ test:
 	gcloud docker -- pull ${CONTAINER_TAG}
 	gcloud container images list --repository ${REGISTRY}/${PROJECT_ID}
 
-delete:
+deleteDocker:
 	gcloud container images delete ${CONTAINER_TAG}
 
 # Kubernetes
