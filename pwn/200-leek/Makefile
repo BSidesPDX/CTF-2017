@@ -1,4 +1,5 @@
-# export PROJECT_ID ?= testing-bsidespdx-ctf-2017
+# export project_ID="your google platform project ID"
+PROJECT_ID?= testing-bsidespdx-ctf-2017
 REGISTRY := gcr.io
 DOCKER_IMAGE := leek
 
@@ -6,7 +7,9 @@ DOCKER_IMAGE := leek
 
 CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 
-target: container push 
+target: container push deploy serve
+
+deleteAll: delete deleteKube
 
 # Docker Configurations
 
