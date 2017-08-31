@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shellcode100
+spec:
+  ports:
+   - port: 31337
+     targetPort: 31337
+  selector:
+    app: shellcode100
+  type: LoadBalancer

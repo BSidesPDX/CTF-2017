@@ -1,0 +1,10 @@
+service thumb
+{
+        disable         = no
+        flags           = REUSE
+        socket_type     = stream
+        wait            = no
+        user            = nobody
+        server          = /usr/bin/qemu-arm-static
+        server_args     = /thumb
+}

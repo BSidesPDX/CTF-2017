@@ -1,7 +1,7 @@
 # export project_ID="your google platform project ID"
 PROJECT_ID ?= testing-bsidespdx-ctf-2017
 REGISTRY := gcr.io
-DOCKER_IMAGE := web100
+DOCKER_IMAGE := shellcode100
 
 CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 
@@ -12,6 +12,7 @@ clean: deleteDocker deleteKube
 # Docker Configurations
 
 container:
+	make -C src
 	docker build --no-cache --tag ${CONTAINER_TAG} src
 
 push: 

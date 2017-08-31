@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shellcode100
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: shellcode100
+      labels:
+        app: shellcode100
+    spec:
+      containers:
+        - name: shellcode100
+          image: gcr.io/%PROJECT_ID%/shellcode100
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+       
