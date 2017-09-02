@@ -8,6 +8,7 @@ CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 target: container push deploy serve
 
 clean: deleteDocker deleteKube
+	make -C src clean
 
 # Docker Configurations
 

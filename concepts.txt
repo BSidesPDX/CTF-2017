@@ -1,15 +1,19 @@
+* = complete with solution
++ = challenge written, needs solution
+
 --  WEB --
 
-100 DoNotTrek - Star Trek Themed Fan Page, Privacy advocate evaluates DNT header to get value, command injection possible in html headers (Python Server)
-200 SeaQuell - Boating Company Website, SQL injection to get to employee panel + file name filtering bug allows access to non-html files (Python Server)
-300 MakeIcon v20.16.37.17 - Uplaod image file to convert to Windows ICO format. Accepts MVG. Uses ImageMagick from 2015; see CVE-2016-3717 et al. (Apache+PHP Server)
-400 Monolith - RFC Index with Search Tool, C++ custom web server with path traversal in cgi-bin, stripped static-linked QEMU+ARM (Custom C Server)
+* 100 - DoNotTrek - Star Trek Themed Fan Page, Privacy advocate evaluates DNT header to get value, command injection possible in html headers (Python Server)
+* 200 - SeaQuell - Boating Company Website, SQL injection to get to employee panel + file name filtering bug allows access to non-html files (Python Server)
+  300 - MakeIcon v20.16.37.17 - Uplaod image file to convert to Windows ICO format. Accepts MVG. Uses ImageMagick from 2015; see CVE-2016-3717 et al. (Apache+PHP Server)
+* 400 - Monolith - RFC Index with Search Tool, C++ custom web server with path traversal in cgi-bin, stripped static-linked QEMU+ARM (Custom C Server)
 
 -- SHELLCODE --
 
-100 - Player must write ARM assembly to cat a flag using a Linux syscall, but can only use 16 bytes of assembly. 
-
-500? DasRücklauf - Everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
+* 100 - Tiny Thumb - Player must write ARM assembly to cat a flag using a Linux syscall, but can only use 16 bytes of assembly. 
+  200 - MOV On - See MOVfuscator, x86 shellcode, but only MOV instructions allowed (for initial execution)
+  300 - UniMIPS - MIPS shellcode, but must be UTF-8 valid
+  400 - DasRücklauf - x64, everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
 
 -- PWNABLES --
 
