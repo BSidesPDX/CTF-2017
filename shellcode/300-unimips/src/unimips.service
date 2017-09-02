@@ -1,0 +1,10 @@
+service unimips
+{
+        disable         = no
+        flags           = REUSE
+        socket_type     = stream
+        wait            = no
+        user            = nobody
+        server          = /usr/bin/qemu-mips-static
+        server_args     = /unimips
+}
