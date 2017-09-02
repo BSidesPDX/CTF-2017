@@ -17,15 +17,13 @@
 
 -- PWNABLES --
 
-100 HTTPSH - Give the clue as https://website/, but have it just be an SSL wrapped shell session. Player must figure out that their GET / is getting executed (since browsers will just bail).
+  100 - HTTPSH - Give the clue as https://website/, but have it just be an SSL wrapped shell session. Player must figure out that their GET / is getting executed (since browsers will just bail).
++ 200 - Leek - The player discovers a web service that is still in early beta stages on that internet that should never have been released. The binary allows the player to perform an information leak which will help bypass ASLR as the binary is exploitable by a trivial strcpy. 
+  300 - 2048 - Give the player 2048 to play in a terminal. The catch is, this was a CTF challenge for the 2014 Pwnium CTF which has a solution. This challenge will trick the player into thinking they need to play 2048 and win when the challenge is really a format string bug to run shellcode written to the games input buffer. 
 
-200 Leek - The player discovers a web service that is still in early beta stages on that internet that should never have been released. The binary allows the player to perform an information leak which will help bypass ASLR as the binary is exploitable by a trivial strcpy. 
-
-300 2048 - Give the player 2048 to play in a terminal. The catch is, this was a CTF challenge for the 2014 Pwnium CTF which has a solution. This challenge will trick the player into thinking they need to play 2048 and win when the challenge is really a format string bug to run shellcode written to the games input buffer. 
 
 -- REVERSE ENGINEERING --
 
-100 xordoz - Basic XOR on a string for the password flag. Good to get people going. Pull up that disassembler!  
-
-200 lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
-
++ 100 - xordoz - Basic XOR on a string for the password flag. Good to get people going. Pull up that disassembler!  
++ 200 - lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
+  300 - dotP33k - Obfuscated .NET (C#) binary that reflectively loads an Assembly, but does not invoke any functions in it. The player must determine which .NET deobfuscator to use, pull out the assembly realizing it is a valid PE file, and find the decryption routine for the flag. 
