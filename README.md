@@ -12,6 +12,7 @@
 | leek | Pwn | 200 |
 | xordoz | Reversing | 100 |
 | lostIT | Reversing | 200 |
+| dotp33k | Reversing | 300 | 
 
 # Local Testing & Deployment 
 
