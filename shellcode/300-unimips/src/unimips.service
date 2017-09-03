@@ -5,6 +5,6 @@ service unimips
         socket_type     = stream
         wait            = no
         user            = nobody
-        server          = /usr/bin/qemu-mips-static
+        server          = /usr/bin/qemu-mipsel-static
         server_args     = /unimips
 }

@@ -1,0 +1,6 @@
+target remote localhost:9999
+def hook-stop
+x/10i $pc
+end
+b main
+c
