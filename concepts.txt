@@ -12,7 +12,7 @@
 
 * 100 - Tiny Thumb - Player must write ARM assembly to cat a flag using a Linux syscall, but can only use 16 bytes of assembly. 
   200 - MOV On - See MOVfuscator, x86 shellcode, but only MOV instructions allowed (for initial execution)
-  300 - UniMIPS - MIPS shellcode, but must be UTF-8 valid
+* 300 - UniMIPS - MIPS shellcode, but must be UTF-8 valid
   400 - DasRücklauf - x64, everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
 
 -- PWNABLES --
@@ -26,4 +26,4 @@
 
 + 100 - xordoz - Basic XOR on a string for the password flag. Good to get people going. Pull up that disassembler!  
 + 200 - lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
-+  300 - dotP33k - Obfuscated .NET (C#) binary that reflectively loads an Assembly, but does not invoke any functions in it. The player must determine which .NET deobfuscator to use, pull out the assembly realizing it is a valid PE file, and find the decryption routine for the flag. 
++ 300 - dotP33k - Obfuscated .NET (C#) binary that reflectively loads an Assembly, but does not invoke any functions in it. The player must determine which .NET deobfuscator to use, pull out the assembly realizing it is a valid PE file, and find the decryption routine for the flag. 
