@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: shellcode300
-          image: gcr.io/%PROJECT_ID%/shellcode100
+          image: gcr.io/%PROJECT_ID%/shellcode300
           imagePullPolicy: Always
           securityContext:
             privileged: false

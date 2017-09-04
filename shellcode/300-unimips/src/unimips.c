@@ -79,9 +79,11 @@ int main(){
     errorLoc = utf8_check(unibuffer);
     if (!errorLoc){
         printf("PASS.\nExecuting...\n");
+        fflush(stdout);
         ((void(*)(void))unibuffer)();
     } else {
         printf("FAIL.\nInvalid byte 0x%x at position %d.\n",(unsigned)(errorLoc[0] & 0xff),(unsigned)(errorLoc-unibuffer));
+        fflush(stdout);
     }
     printf("Bye.\n");
     fflush(stdout);
