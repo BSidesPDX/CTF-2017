@@ -23,9 +23,9 @@ except:
     print "Usage: solution.py [debug | <host> <port>]"
     exit()
 
-
+print "Sending payload."
 p.send(payload)
-
+print p.recvuntil('Executing...')
 print "Flag: "
 print p.recv(1024)
 p.interactive()
