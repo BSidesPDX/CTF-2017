@@ -1,0 +1,10 @@
+service 2048
+{
+        disable         = no
+        flags           = REUSE
+        socket_type     = stream
+        wait            = no
+        user            = 2048
+        server          = /usr/sbin/in.telnetd
+        server_args     = -h -L /opt/2048/2k48/2k48
+}

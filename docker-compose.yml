@@ -7,6 +7,10 @@ leek:
     build: ./pwn/200-leek/src
     ports:  
         - 9000:2007
+'2048':
+    build: ./pwn/400-2048/src
+    ports:  
+        - 2048:2048
 
 # Web
 donottrek:

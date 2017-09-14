@@ -1,0 +1,224 @@
+diff --git a/2048.cpp b/2048.cpp
+index 4d526c8..ec2869d 100644
+--- a/2048.cpp
++++ b/2048.cpp
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "2048.h"
++#include "highscore.h"
+ #include <cstring>
+ #include <cstdlib>
+ #include <cstdio>
+@@ -252,5 +253,10 @@ void Grid::resetTileMoves()
+ 	}
+ }
+ 
++void Grid::getHighScore()
++{
++
++   highScore = loadHighScore(&highPlayer);
++}
+ #undef tile
+ 
+diff --git a/2048.h b/2048.h
+index 497bfad..58af8ed 100644
+--- a/2048.h
++++ b/2048.h
+@@ -60,10 +60,11 @@ public:
+ 	bool canMove() const;
+ 	int getMoves() const;
+ 	int getMaxTile() const;
+-
+-	bool load(const char* fname);
++    void getHighScore();
++	 int highScore;
++    char *highPlayer;
++    bool load(const char* fname);
+ 	bool save(const char* fname) const;
+-
+ 	void mkTestGrid();
+ 
+ private:
+diff --git a/Makefile b/Makefile
+index 30a0dba..4a4f5eb 100644
+--- a/Makefile
++++ b/Makefile
+@@ -3,13 +3,11 @@ SOURCES=main.cpp io.cpp 2048.cpp render.cpp
+ HEADERS=io.h 2048.h render.h
+ OBJECTS=$(SOURCES:.cpp=.o)
+ 
+-CXXFLAGS=-Wall -c
++CXXFLAGS=-Wall -c -fno-stack-protector
+ 
+ DEBUG?=0
+ ifeq ($(DEBUG), 1)
+ 	CXXFLAGS+=-g -DDEBUG
+-else
+-	CXXFLAGS+=-O3
+ endif
+ 
+ DEAMON?=0
+@@ -22,7 +20,7 @@ all: $(TARGET)
+ clean:
+ 	rm -f $(TARGET) *.o
+ 
+-$(TARGET): main.o io.o 2048.o render.o
++$(TARGET): main.o io.o 2048.o highscore.o render.o
+ 	$(CXX) -o $@ $^ -lncurses
+ 
+ %.o: %.cpp $(HEADERS)
+diff --git a/main.cpp b/main.cpp
+index b533c44..550f969 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -7,12 +7,12 @@
+ #include "io.h"
+ #include "2048.h"
+ #include "render.h"
++#include "highscore.h"
+ #include <cstdlib>
+ #include <ctime>
+ #include <cstddef>
+ #include <cstring>
+ 
+-
+ #define SAVE_FILE		"2k48.save"
+ #define SESSION_DIR		"/tmp/2k48/"	// for deamon saves
+ 
+@@ -24,7 +24,7 @@ static char* sessionfname = NULL;
+ static void exitHandler(const char* cause)
+ {
+ 	printf("Exiting, cause: %s\n", cause);
+-	grid.save(sessionfname);
++//	grid.save(sessionfname);
+ #ifdef DEAMON
+ 	delete [] sessionfname;
+ #endif
+@@ -143,13 +143,14 @@ void showInfo()
+ 	addstr("\n\n"
+ 			"     Terminal version of 2048 game - http://git.io/2048\n"
+ #ifdef DEAMON
+-			"     Please do not try to hack my machine!\n"
++			"     Please try to hack my machine!\n"
+ #endif
+ 			"\n");
+ 
+ 	FMTENT("author:", "Mike 'sc0ty' Szymaniak");
+ 	FMTENT("email:", "sc0typl[at]gmail.com");
+ 	FMTENT("webpage:", "http://sc0ty.pl\n");
++	FMTENT("webpage:", "http://sc0ty.pl\n");
+ 	
+ 	FMTPAR("HOW TO PLAY");
+ 	addstr( "        Use your arrow keys to move the tiles. When two\n"
+@@ -159,6 +160,8 @@ void showInfo()
+ 	FMTPAR("CONTROLS");
+ 	FMTENT("move:", "arrows or W/S/A/D");
+ 	FMTENT("quit:", "Q\n");
++	
++   FMTENT("Erase High Score:", "L\n");
+ 
+ 	FMTPAR("GLITCHES");
+ 	addstr(	"        If you see glitches during game - press R. It\n"
+@@ -195,6 +198,7 @@ int mainMenu()
+ #ifdef DEBUG
+ 	MENUENT("T", "test grid");
+ #endif
++	MENUENT("L", "Erase High Score")
+ 	MENUENT("Q", "quit")
+ 	addstr("\n   http://sc0ty.pl");
+ 	refresh();
+@@ -204,7 +208,11 @@ int mainMenu()
+ 	{
+ 		addstr("\n\n   Press again to confirm\n");
+ 		refresh();
+-		if (ch != getlowkey()) return 0;
++		if (ch != getlowkey()) 
++       {
++            setHighScore(grid.getMaxTile(), grid.highScore);
++            return 0;
++       }
+ 	}
+ 
+ 	return ch;
+@@ -241,6 +249,7 @@ void game()
+ 			animDelay();
+ 			LOG("win with %d moves", grid.getMoves());
+ 			showPopup("        You win!         ");
++            setHighScore(grid.getMaxTile(), grid.highScore);
+ 			return;
+ 		}
+ 		
+@@ -249,7 +258,8 @@ void game()
+ 			animDelay();
+ 			LOG( "lose with %d moves, score %d", grid.getMoves(), grid.getMaxTile());
+ 			showPopup("        Game over!       ");
+-			return;
++            setHighScore(grid.getMaxTile(), grid.highScore);
++            return;
+ 		}
+ 
+ 		do
+@@ -284,7 +294,7 @@ int main(int argc, char *argv[])
+ 
+ 	if (!grid.load(sessionfname)) showInfo();
+ 	if (!grid.canMove()) grid.reset();
+-
++    grid.getHighScore();
+ 	while (true)
+ 	{
+ 		if (play) game();
+@@ -299,14 +309,16 @@ int main(int argc, char *argv[])
+ 			case 'c': break;
+ 			case 'n': grid.reset(); break;
+ 			case 'i': showInfo(); play = false; break;
++            case 'l': eraseHighScore(); grid.getHighScore(); break;
+ #ifdef DEBUG
+ 			case 't': grid.mkTestGrid(); break;
+ #endif
+ 			default:  play = false;
+ 		}
+ 	}
+-
+-	endwin();
++    setHighScore(grid.getMaxTile(), grid.highScore);
++    free(grid.highPlayer);
++    endwin();
+ 	LOGS("closed by user");
+ 	exitHandler("ended by user");
+ 	return 0;
+diff --git a/render.cpp b/render.cpp
+index 6dddb09..1e56a5a 100644
+--- a/render.cpp
++++ b/render.cpp
+@@ -7,6 +7,7 @@
+ #include "render.h"
+ #include "2048.h"
+ #include "io.h"
++#include "highscore.h"
+ #include <unistd.h>
+ 
+ 
+@@ -18,7 +19,12 @@ void drawGrid(const Grid& grid)
+ {
+ 	rescur();
+ 
+-	addch('\n');
++	addstr("   ");
++	coloron(14);
++	printw("2k48 Highscore: %-4d Player: %10s", grid.highScore, grid.highPlayer);
++	coloroff(14);
++	
++   addch('\n');
+ 	for (int y=0; y<WY; ++y)
+ 	{
+ 		for (int x=0; x<WX; ++x)
+@@ -31,7 +37,7 @@ void drawGrid(const Grid& grid)
+ 	
+ 	addstr("   ");
+ 	coloron(14);
+-	printw("   2k48      moves: %-4d ", grid.getMoves());
++	printw("2k48 Block: %-4d moves: %-4d                ", grid.getMaxTile(), grid.getMoves());
+ 	coloroff(14);
+ 
+ 	refresh();
