@@ -6,7 +6,7 @@
 * 100 - DoNotTrek - Star Trek Themed Fan Page, Privacy advocate evaluates DNT header to get value, command injection possible in html headers (Python Server)
 * 200 - SeaQuell - Boating Company Website, SQL injection to get to employee panel + file name filtering bug allows access to non-html files (Python Server)
   300 - MakeIcon v20.16.37.17 - Uplaod image file to convert to Windows ICO format. Accepts MVG. Uses ImageMagick from 2015; see CVE-2016-3717 et al. (Apache+PHP Server)
-* 400 - Monolith - RFC Index with Search Tool, C++ custom web server with path traversal in cgi-bin, stripped static-linked QEMU+ARM (Custom C Server)
+* 400 - Monolith - RFC Index with Search Tool, custom C web server with path traversal in cgi-bin, stripped static-linked x86
 
 -- SHELLCODE --
 
