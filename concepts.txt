@@ -11,7 +11,7 @@
 -- SHELLCODE --
 
 * 100 - Tiny Thumb - Player must write ARM assembly to cat a flag using a Linux syscall, but can only use 16 bytes of assembly. 
-  200 - MOV On - See MOVfuscator, x86 shellcode, but only MOV instructions allowed (for initial execution)
+* 200 - MOV On - See MOVfuscator, x86 shellcode, but only MOV instructions allowed (for initial execution ;) )
 * 300 - UniMIPS - MIPS shellcode, but must be UTF-8 valid
   400 - DasRücklauf - x64, everything ASLR'd except one statically mapped r-x set of just a few gadgets, unlimited ROP chain.
 
