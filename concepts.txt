@@ -26,5 +26,4 @@
 + 100 - xordoz - Basic XOR on a string for the password flag. Good to get people going. Pull up that disassembler!  
 + 200 - lostIt - A student is writing a secret notes application and is using 3DES to hash a password to xor against a string. The student even went as far to use some obfuscated python. Player must write a decrypt functionality and discover the flag. 
 + 300 - dotP33k - Obfuscated .NET (C#) binary that reflectively loads an Assembly, but does not invoke any functions in it. The player must determine which .NET deobfuscator to use, pull out the assembly realizing it is a valid PE file, and find the decryption routine for the flag.
-  400 - 2ez400 - Image embedded in a binary that has been encoded in a way such that it cannot easily be pulled out. (ie; ror13 the image before putting it inside the binary) and having the image have a stego flag in it that the player must use `zsteg` on. 
- 
++ 400 - 2ez400 - Embedded png image in `challenge` binary with LSB encoding. The flag is encoded with rot-13. Player must parse out the file from the `challenge` binary, remove the text file from the photo, and obtain the flag.
