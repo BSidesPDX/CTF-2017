@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: 2048
-          image: gcr.io/%PROJECT_ID%/web200
+          image: gcr.io/%PROJECT_ID%/2048
           imagePullPolicy: Always
           securityContext:
             privileged: false
