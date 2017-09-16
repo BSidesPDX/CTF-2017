@@ -1,5 +1,5 @@
 diff --git a/2048.cpp b/2048.cpp
-index 4d526c8..ec2869d 100644
+index 4d526c8..5f18a9d 100644
 --- a/2048.cpp
 +++ b/2048.cpp
 @@ -5,6 +5,7 @@
@@ -10,13 +10,30 @@ index 4d526c8..ec2869d 100644
  #include <cstring>
  #include <cstdlib>
  #include <cstdio>
-@@ -252,5 +253,10 @@ void Grid::resetTileMoves()
+@@ -73,7 +74,7 @@ bool Grid::genBlock()
+ 	{
+ 		for (int x=0; x<WX; ++x)
+ 		{
+-			if (tiles[x][y] == 0) 
++			if (tiles[x][y] == 0)
+ 			{
+ 				if (id-- == 0)
+ 				{
+@@ -151,7 +152,7 @@ bool Grid::load(const char* fname)
+ 	return (res == 1);
+ }
+ 
+-bool Grid::save(const char* fname) const 
++bool Grid::save(const char* fname) const
+ {
+ 	if (fname == NULL) return false;
+ 
+@@ -252,5 +253,9 @@ void Grid::resetTileMoves()
  	}
  }
  
 +void Grid::getHighScore()
 +{
-+   
 +   highScore = loadHighScore(&highPlayer);
 +}
  #undef tile
@@ -69,7 +86,7 @@ index 30a0dba..4a4f5eb 100644
  
  %.o: %.cpp $(HEADERS)
 diff --git a/main.cpp b/main.cpp
-index b533c44..82b4865 100644
+index b533c44..7de92bf 100644
 --- a/main.cpp
 +++ b/main.cpp
 @@ -7,12 +7,12 @@
@@ -208,7 +225,7 @@ index b533c44..82b4865 100644
 +
 +    play = playAgain();
 +    if (play)
-+        main(NULL, NULL);    
++        main(NULL, NULL);
  
 -	endwin();
 -	LOGS("closed by user");
@@ -217,7 +234,7 @@ index b533c44..82b4865 100644
  	return 0;
  }
 diff --git a/render.cpp b/render.cpp
-index 6dddb09..1e56a5a 100644
+index 6dddb09..e7f275b 100644
 --- a/render.cpp
 +++ b/render.cpp
 @@ -7,6 +7,7 @@
@@ -237,13 +254,17 @@ index 6dddb09..1e56a5a 100644
 +	coloron(14);
 +	printw("2k48 Highscore: %-4d Player: %10s", grid.highScore, grid.highPlayer);
 +	coloroff(14);
-+	
++
 +    addch('\n');
  	for (int y=0; y<WY; ++y)
  	{
  		for (int x=0; x<WX; ++x)
-@@ -31,7 +37,7 @@ void drawGrid(const Grid& grid)
- 	
+@@ -28,10 +34,10 @@ void drawGrid(const Grid& grid)
+ 		}
+ 		addstr("\n\n\n");
+ 	}
+-	
++
  	addstr("   ");
  	coloron(14);
 -	printw("   2k48      moves: %-4d ", grid.getMoves());
