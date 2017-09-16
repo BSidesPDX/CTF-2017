@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: 2048
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: 2048
+      labels:
+        app: 2048
+    spec:
+      containers:
+        - name: 2048
+          image: gcr.io/testing-bsidespdx-ctf-2017/2048
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

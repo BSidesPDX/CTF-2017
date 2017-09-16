@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: 2048 
+  labels:
+    app: 2048
+spec:
+  ports:
+   - port: 2048
+     targetPort: 2048
+  selector:
+    app: 2048
+  type: LoadBalancer
