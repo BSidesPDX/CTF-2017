@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shellcode200
+spec:
+  ports:
+   - port: 35264
+     targetPort: 35264
+  selector:
+    app: shellcode200
+  type: LoadBalancer
