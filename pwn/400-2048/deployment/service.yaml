@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: 2048 
-  labels:
-    app: 2048
+  name: 2048
 spec:
   ports:
    - port: 2048

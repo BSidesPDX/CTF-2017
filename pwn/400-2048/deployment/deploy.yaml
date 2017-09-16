@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: 2048
@@ -12,9 +12,10 @@ spec:
     spec:
       containers:
         - name: 2048
-          image: gcr.io/testing-bsidespdx-ctf-2017/2048
+          image: gcr.io/%PROJECT_ID%/web200
           imagePullPolicy: Always
           securityContext:
             privileged: false
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
+       
