@@ -16,7 +16,7 @@ index 4d526c8..ec2869d 100644
  
 +void Grid::getHighScore()
 +{
-+
++   
 +   highScore = loadHighScore(&highPlayer);
 +}
  #undef tile
@@ -32,7 +32,7 @@ index 497bfad..58af8ed 100644
 -
 -	bool load(const char* fname);
 +    void getHighScore();
-+	 int highScore;
++	int highScore;
 +    char *highPlayer;
 +    bool load(const char* fname);
  	bool save(const char* fname) const;
@@ -69,7 +69,7 @@ index 30a0dba..4a4f5eb 100644
  
  %.o: %.cpp $(HEADERS)
 diff --git a/main.cpp b/main.cpp
-index b533c44..550f969 100644
+index b533c44..82b4865 100644
 --- a/main.cpp
 +++ b/main.cpp
 @@ -7,12 +7,12 @@
@@ -95,7 +95,7 @@ index b533c44..550f969 100644
  #ifdef DEAMON
  	delete [] sessionfname;
  #endif
-@@ -143,13 +143,14 @@ void showInfo()
+@@ -143,14 +143,15 @@ void showInfo()
  	addstr("\n\n"
  			"     Terminal version of 2048 game - http://git.io/2048\n"
  #ifdef DEAMON
@@ -107,19 +107,21 @@ index b533c44..550f969 100644
  	FMTENT("author:", "Mike 'sc0ty' Szymaniak");
  	FMTENT("email:", "sc0typl[at]gmail.com");
  	FMTENT("webpage:", "http://sc0ty.pl\n");
+-	
 +	FMTENT("webpage:", "http://sc0ty.pl\n");
- 	
++
  	FMTPAR("HOW TO PLAY");
  	addstr( "        Use your arrow keys to move the tiles. When two\n"
-@@ -159,6 +160,8 @@ void showInfo()
- 	FMTPAR("CONTROLS");
+ 			"        tiles with the same number touch, they merge\n"
+@@ -160,6 +161,8 @@ void showInfo()
  	FMTENT("move:", "arrows or W/S/A/D");
  	FMTENT("quit:", "Q\n");
-+	
-+   FMTENT("Erase High Score:", "L\n");
  
++    FMTENT("Erase High Score:", "L\n");
++
  	FMTPAR("GLITCHES");
  	addstr(	"        If you see glitches during game - press R. It\n"
+ 			"        will force screen to be repainted every frame.\n\n");
 @@ -195,6 +198,7 @@ int mainMenu()
  #ifdef DEBUG
  	MENUENT("T", "test grid");
@@ -133,23 +135,25 @@ index b533c44..550f969 100644
  		addstr("\n\n   Press again to confirm\n");
  		refresh();
 -		if (ch != getlowkey()) return 0;
-+		if (ch != getlowkey()) 
-+       {
++		if (ch != getlowkey())
++        {
 +            setHighScore(grid.getMaxTile(), grid.highScore);
 +            return 0;
-+       }
++        }
  	}
  
  	return ch;
-@@ -241,6 +249,7 @@ void game()
+@@ -241,15 +249,17 @@ void game()
  			animDelay();
  			LOG("win with %d moves", grid.getMoves());
  			showPopup("        You win!         ");
 +            setHighScore(grid.getMaxTile(), grid.highScore);
  			return;
  		}
- 		
-@@ -249,7 +258,8 @@ void game()
+-		
++
+ 		if (!grid.canMove())
+ 		{
  			animDelay();
  			LOG( "lose with %d moves, score %d", grid.getMoves(), grid.getMaxTile());
  			showPopup("        Game over!       ");
@@ -159,16 +163,35 @@ index b533c44..550f969 100644
  		}
  
  		do
-@@ -284,7 +294,7 @@ int main(int argc, char *argv[])
+@@ -274,6 +284,15 @@ void game()
+ 	}
+ }
  
- 	if (!grid.load(sessionfname)) showInfo();
++int playAgain()
++{
++    int player = 0;
++    printf("Would you like to play again? Y/N \n");
++    player = getkey();
++    if (player == 'Y' || player == 'y')
++        return 1;
++    return 0;
++}
+ 
+ int main(int argc, char *argv[])
+ {
+@@ -282,9 +301,9 @@ int main(int argc, char *argv[])
+ 	char ch = 0;
+ 	bool play = true;
+ 
+-	if (!grid.load(sessionfname)) showInfo();
++	//if (!grid.load(sessionfname)) showInfo();
  	if (!grid.canMove()) grid.reset();
 -
 +    grid.getHighScore();
  	while (true)
  	{
  		if (play) game();
-@@ -299,14 +309,16 @@ int main(int argc, char *argv[])
+@@ -299,15 +318,22 @@ int main(int argc, char *argv[])
  			case 'c': break;
  			case 'n': grid.reset(); break;
  			case 'i': showInfo(); play = false; break;
@@ -179,14 +202,20 @@ index b533c44..550f969 100644
  			default:  play = false;
  		}
  	}
--
--	endwin();
 +    setHighScore(grid.getMaxTile(), grid.highScore);
 +    free(grid.highPlayer);
 +    endwin();
- 	LOGS("closed by user");
++
++    play = playAgain();
++    if (play)
++        main(NULL, NULL);    
+ 
+-	endwin();
+-	LOGS("closed by user");
++    LOGS("closed by user");
  	exitHandler("ended by user");
  	return 0;
+ }
 diff --git a/render.cpp b/render.cpp
 index 6dddb09..1e56a5a 100644
 --- a/render.cpp
@@ -209,7 +238,7 @@ index 6dddb09..1e56a5a 100644
 +	printw("2k48 Highscore: %-4d Player: %10s", grid.highScore, grid.highPlayer);
 +	coloroff(14);
 +	
-+   addch('\n');
++    addch('\n');
  	for (int y=0; y<WY; ++y)
  	{
  		for (int x=0; x<WX; ++x)
