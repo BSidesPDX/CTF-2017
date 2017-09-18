@@ -58,7 +58,7 @@ index 497bfad..58af8ed 100644
  
  private:
 diff --git a/Makefile b/Makefile
-index 30a0dba..fdb417e 100644
+index 30a0dba..a848648 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -3,13 +3,10 @@ SOURCES=main.cpp io.cpp 2048.cpp render.cpp
@@ -76,7 +76,7 @@ index 30a0dba..fdb417e 100644
  endif
  
  DEAMON?=0
-@@ -22,11 +19,10 @@ all: $(TARGET)
+@@ -22,9 +19,8 @@ all: $(TARGET)
  clean:
  	rm -f $(TARGET) *.o
  
@@ -86,10 +86,7 @@ index 30a0dba..fdb417e 100644
 +$(TARGET): main.o io.o 2048.o highscore.o render.o
 +	$(CXX) -m32 -o $@ $^ -l ncurses
  %.o: %.cpp $(HEADERS)
--	$(CXX) $(CXXFLAGS) -o $@ $<
-+	$(CXX) $(CXXFLAGS) -o $@ $< 
- 
- .PHONY: all clean
+ 	$(CXX) $(CXXFLAGS) -o $@ $<
  
 diff --git a/main.cpp b/main.cpp
 index b533c44..7de92bf 100644
