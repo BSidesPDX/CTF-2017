@@ -1,8 +1,8 @@
 FROM ubuntu:xenial
 
 run apt update
-run apt install build-essential gcc-multilib git xinetd telnetd -y
-run apt install libncurses5 libncurses5-dev -y
+run apt install build-essential gcc-multilib g++-multilib git xinetd telnetd -y
+run apt install libncurses5 lib32ncurses5 lib32ncurses5-dev libncurses5-dev -y
 run apt clean
 
 # Add files to container

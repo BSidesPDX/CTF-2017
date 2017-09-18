@@ -58,16 +58,16 @@ index 497bfad..58af8ed 100644
  
  private:
 diff --git a/Makefile b/Makefile
-index 30a0dba..4a4f5eb 100644
+index 30a0dba..fdb417e 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -3,13 +3,11 @@ SOURCES=main.cpp io.cpp 2048.cpp render.cpp
+@@ -3,13 +3,10 @@ SOURCES=main.cpp io.cpp 2048.cpp render.cpp
  HEADERS=io.h 2048.h render.h
  OBJECTS=$(SOURCES:.cpp=.o)
  
 -CXXFLAGS=-Wall -c
-+CXXFLAGS=-Wall -c -fno-stack-protector
- 
+-
++CXXFLAGS=-Wall -c -fno-stack-protector -m32 -L /usr/lib32/ -lstdc++
  DEBUG?=0
  ifeq ($(DEBUG), 1)
  	CXXFLAGS+=-g -DDEBUG
@@ -76,15 +76,21 @@ index 30a0dba..4a4f5eb 100644
  endif
  
  DEAMON?=0
-@@ -22,7 +20,7 @@ all: $(TARGET)
+@@ -22,11 +19,10 @@ all: $(TARGET)
  clean:
  	rm -f $(TARGET) *.o
  
 -$(TARGET): main.o io.o 2048.o render.o
+-	$(CXX) -o $@ $^ -lncurses
+-
 +$(TARGET): main.o io.o 2048.o highscore.o render.o
- 	$(CXX) -o $@ $^ -lncurses
- 
++	$(CXX) -m32 -o $@ $^ -l ncurses
  %.o: %.cpp $(HEADERS)
+-	$(CXX) $(CXXFLAGS) -o $@ $<
++	$(CXX) $(CXXFLAGS) -o $@ $< 
+ 
+ .PHONY: all clean
+ 
 diff --git a/main.cpp b/main.cpp
 index b533c44..7de92bf 100644
 --- a/main.cpp
