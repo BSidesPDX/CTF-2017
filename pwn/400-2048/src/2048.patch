@@ -58,7 +58,7 @@ index 497bfad..58af8ed 100644
  
  private:
 diff --git a/Makefile b/Makefile
-index 30a0dba..a848648 100644
+index 30a0dba..c80f56d 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -3,13 +3,10 @@ SOURCES=main.cpp io.cpp 2048.cpp render.cpp
@@ -67,7 +67,7 @@ index 30a0dba..a848648 100644
  
 -CXXFLAGS=-Wall -c
 -
-+CXXFLAGS=-Wall -c -fno-stack-protector -m32 -L /usr/lib32/ -lstdc++
++CXXFLAGS=-Wall -c -fno-stack-protector -m32 -L /usr/lib32/ -lstdc++ -z execstack
  DEBUG?=0
  ifeq ($(DEBUG), 1)
  	CXXFLAGS+=-g -DDEBUG
