@@ -6,4 +6,4 @@ leek: ${OBJS}
 	${CC} -m32 ${CFLAGS} -o leek leek.c
 
 clean:
-	rm rf *.o leek 
+	rm -rf *.o leek 
