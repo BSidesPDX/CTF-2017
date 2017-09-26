@@ -7,6 +7,12 @@ leek:
     build: ./pwn/200-leek/src
     ports:  
         - 9000:2007
+
+nodes:
+    build: ./pwn/300-nodes/src
+    ports:
+        - 4321:4321
+
 '2048':
     build: ./pwn/400-2048/src
     ports:  
