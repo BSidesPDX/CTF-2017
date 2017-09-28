@@ -23,6 +23,9 @@
 
 To locally test and deploy challenges with Docker, run the following after adding to docker-compose.yml
 
+1. `sudo apt install gcc-multilib gcc-mipsel-linux-gnu arm-linux-gnueabi g++-multilib linux-libc-dev:i386`
+1. `make`
 1. `docker-compose build && docker-compose up -d`
 1. Containers are viewable at localhost:PORT (view with docker-compose ps)
 1. `docker-compose kill` to stop the containers
+1. `make clean` to clean the source folders

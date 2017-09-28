@@ -1,12 +1,11 @@
-# make -C ./web/400-Monolith/src
 # docker-compose build && docker-compose up -d
 
-
 # Pwn
+
 leek:
     build: ./pwn/200-leek/src
     ports:  
-        - 9000:2007
+        - 2007:2007
 
 nodes:
     build: ./pwn/300-nodes/src
@@ -18,18 +17,36 @@ nodes:
     ports:  
         - 2048:2048
 
+# Shellcode
+
+thumb:
+    build: ./shellcode/100-thumb/src
+    ports:
+        - 31337:31337
+
+movon:
+    build: ./shellcode/200-movon/src
+    ports:
+        - 35264:35264
+
+unimips:
+    build: ./shellcode/300-unimips/src
+    ports:
+        - 41414:41414
+
 # Web
+
 donottrek:
     build: ./web/100-DoNotTrek/src
     ports:
-        - 1588:5000
+        - 5000:5000
 
 seaquell:
     build: ./web/200-SeaQuell/src
     ports:
-        - 1589:8000
+        - 8000:8000
 
 monolith:
     build: ./web/400-Monolith/src
     ports:
-        - 1590:5001
+        - 5001:5001
