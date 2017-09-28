@@ -21,9 +21,10 @@ void append_list_node(struct list_node *list, struct list_node *node)
     current_node->next = node;
 }
 
-void main()
+int main()
 {
-    fprintf(stdout,"Well, hello there. Do you understand linked lists?\n");
+    printf("Well, hello there. Do you understand linked lists?\n");
+    fflush(stdout);
     char shellcode_buffer[1024];
     struct list_node *shellcode_list = NULL, *current_node;
     uint32_t current_chunk, retval;

@@ -14,7 +14,6 @@ ADD nodes.service /etc/xinetd.d/nodes
 # Make and run
 RUN make
 run echo "nodes 4321/tcp" >> /etc/services
-run cat /etc/services
 EXPOSE 4321
 
 CMD ["xinetd", "-dontfork"]
