@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodes
+  labels:
+    app: nodes
+spec:
+  ports:
+   - port: 4321
+     targetPort: 4321
+  selector:
+    app: nodes
+  type: LoadBalancer
