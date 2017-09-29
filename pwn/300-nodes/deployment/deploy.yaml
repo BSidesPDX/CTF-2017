@@ -11,7 +11,7 @@ spec:
         app: nodes
     spec:
       containers:
-        - name: leek
+        - name: nodes
           image: gcr.io/testing-bsidespdx-ctf-2017/nodes
           imagePullPolicy: Always
           securityContext:
