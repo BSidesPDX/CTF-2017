@@ -44,6 +44,6 @@ int main() {
     do {
         wptr += r;
         r = read(0,wptr,1024);
-    }while(r > 0);
+    }while(r > 0 && wptr < stack+1024);
     return 0;
 }
