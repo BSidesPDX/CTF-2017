@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: leek
-          image: gcr.io/testing-bsidespdx-ctf-2017/leek
+          image: gcr.io/testing-bsidespdx-ctf-2017/nodes
           imagePullPolicy: Always
           securityContext:
             privileged: false
