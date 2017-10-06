@@ -7,12 +7,10 @@ run apt-get clean
 # Add files to container
 WORKDIR /opt/
 ADD flag /opt/
-ADD nodes.c /opt/
-ADD Makefile /opt/
 ADD nodes.service /etc/xinetd.d/nodes
+ADD nodes /opt/nodes
 
 # Make and run
-RUN make
 run echo "nodes 4321/tcp" >> /etc/services
 EXPOSE 4321
 
