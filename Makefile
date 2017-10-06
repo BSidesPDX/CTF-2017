@@ -1,4 +1,8 @@
-target: shellcode web
+target: pwn shellcode web
+
+pwn:
+	make -C ./pwn/200-leek/src
+	make -C ./pwn/300-nodes/src
 
 shellcode:
 	make -C ./shellcode/100-thumb/src
