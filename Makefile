@@ -8,6 +8,7 @@ shellcode:
 	make -C ./shellcode/100-thumb/src
 	make -C ./shellcode/200-movon/src
 	make -C ./shellcode/300-unimips/src
+	make -C ./shellcode/400-dasruck/src
 
 web:
 	make -C ./web/400-Monolith/src

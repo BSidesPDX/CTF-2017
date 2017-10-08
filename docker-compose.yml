@@ -34,6 +34,11 @@ unimips:
     ports:
         - 41414:41414
 
+dasruck:
+    build: ./shellcode/400-dasruck/src
+    ports:
+        - 5050:5050
+
 # Web
 
 donottrek:
