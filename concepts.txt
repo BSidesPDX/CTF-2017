@@ -17,7 +17,7 @@
 
 -- PWNABLES --
 
-  100 - Cookies - Reuse of a challenge used in the SANS Holiday Hack in 2015 which was modified and later used during an internal CTF. Tests the players ability to reverse engineer a binary to bypass a stack cookie. Simple /bin/sh shell can be used.
++ 100 - Cookies - Reuse of a challenge used in the SANS Holiday Hack in 2015 which was modified and later used during an internal CTF. Tests the players ability to reverse engineer a binary to bypass a stack cookie. Simple /bin/sh shell can be used.
 + 200 - Leek - The player discovers a web service that is still in early beta stages on that internet that should never have been released. The binary allows the player to perform an information leak which will help bypass ASLR as the binary is exploitable by a trivial strcpy.
 + 300 - nodes - The player must figure out how a linked list which stores shellcode and then executes it if the list is properly allocated. This is a decent RE challenge posed with some shellcode / pwnables feel. This is a spin of a challenge given at OregonCTF in 2016 and 2017 and then modified by @jessemichael and then by @ttimzen. Keep Oregon CTF alive!
 + 400 - 2048 - Give the player 2048 to play in a terminal. The catch is, this was a CTF challenge for the 2014 Pwnium CTF which has a solution. This challenge will trick the player into thinking they need to play 2048 and win when the challenge is really a format string bug that allows code exec in the highscore functionality.
