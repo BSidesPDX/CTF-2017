@@ -13,8 +13,8 @@ clean: deleteDocker deleteKube
 # Docker Configurations
 
 container:
-	docker build --no-cache --tag ${CONTAINER_TAG} src
 	make -C src
+	docker build --no-cache --tag ${CONTAINER_TAG} src
 
 push: 
 	gcloud docker -- push ${CONTAINER_TAG}
