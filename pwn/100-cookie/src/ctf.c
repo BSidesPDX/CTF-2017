@@ -23,7 +23,7 @@ int child_main(int sd)		//handler for incoming connections
 		recv(sd, &choice, 1, 0);
 
 		switch (choice) {
-		case 51:
+		case 49:
 			fp = popen("/usr/bin/xxd /opt/cookie/cookie", "r");
 			if (fp == NULL) {
 				printf("Failed to run command\n");
