@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: cookie
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: cookie
+      labels:
+        app: cookie
+    spec:
+      containers:
+        - name: cookie
+          image: gcr.io/testing-bsidespdx-ctf-2017/cookie
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
