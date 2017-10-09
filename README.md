@@ -10,7 +10,7 @@
 | MOV On | Shellcode | 200 |
 | UniMIPS | Shellcode | 300 |
 | DasRücklauf | Shellcode | 400 |
-| HTTPSH | Pwn | 100 |
+| Cookies | Pwn | 100 |
 | leek | Pwn | 200 |
 | nodes | Pwn | 300 |
 | 2048 | Pwn | 400 |
