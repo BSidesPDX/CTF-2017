@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web300
+spec:
+  ports:
+   - port: 80
+     targetPort: 80
+  selector:
+    app: web300
+  type: LoadBalancer
