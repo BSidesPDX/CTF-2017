@@ -19,9 +19,9 @@
 | dotp33k | Reversing | 300 |
 | 2ez400 | Reversing | 400 |
 
-# Local Testing & Deployment
+# Local Deployment
 
-To locally test and deploy challenges with Docker, run the following after adding to docker-compose.yml
+To locally test, deploy or play challenges with Docker, run the following
 
 1. `sudo apt install gcc-multilib gcc-mipsel-linux-gnu arm-linux-gnueabi g++-multilib linux-libc-dev:i386`
 1. `make`
