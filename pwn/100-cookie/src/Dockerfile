@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 run apt-get update
-run apt-get install -y xinetd build-essential gcc-multilib vim-common
+run apt-get install -y xinetd build-essential gcc-multilib vim-common gdb
 run apt-get clean
 
 # Add files to container
