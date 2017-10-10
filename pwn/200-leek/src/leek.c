@@ -15,11 +15,17 @@ void copyAndWriteMessage(char *writeMessage, FILE *stdout)
     strcpy(temp, writeMessage);
 }
 
+void displayName()
+{
+    char name[100];
+    scanf("%100[^\n]", name);
+    fprintf(stdout, name);
+}
+
 void challengeInit() 
 {
     char selection = '0';
     char writeMessage[SIZE];
-    char name[100];
     char *prompt =  "\
                     BETA BETA BETA BETA BETA BETA \n\
                     Would you like to play a game? \n\
@@ -42,8 +48,7 @@ void challengeInit()
             case 49:
                 fprintf(stdout, "\nEnter your name \n");
                 fflush(stdout);
-                scanf("%100[^\n]", name);
-                fprintf(stdout, name);
+                displayName();
                 fflush(stdout);
                 break;
 
@@ -67,7 +72,6 @@ void challengeInit()
 
         }
         bzero(&selection, 1); 
-        bzero(name, 100);
         bzero(writeMessage, SIZE); 
         fseek(stdin,0,SEEK_END);
     }
