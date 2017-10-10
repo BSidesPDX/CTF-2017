@@ -1,7 +1,7 @@
 # Pwn
 
-cookies:
-    build: ./pwn/100-cookies/src
+cookie:
+    build: ./pwn/100-cookie/src
     ports:
         - 53000:53000
     security_opt:
@@ -61,6 +61,11 @@ seaquell:
     build: ./web/200-SeaQuell/src
     ports:
         - 8000:8000
+
+makeicon:
+    build: ./web/300-MakeIcon/src
+    ports:
+        - 80:80
 
 monolith:
     build: ./web/400-Monolith/src
