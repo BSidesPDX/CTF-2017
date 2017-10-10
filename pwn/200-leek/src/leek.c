@@ -21,9 +21,7 @@ void copyAndWriteMessage(char *writeMessage, FILE *fp)
 
 void challengeInit(int sfd) 
 {
-
     char selection = '0';
-    char name[100];
     char writeMessage[SIZE];
     char *prompt =  "\
                     Would you like to play a game? \n\
@@ -33,6 +31,7 @@ void challengeInit(int sfd)
                     3 - exit \n";
     
     char *message = "Enter an option \n";
+    char name[100];
    
     int fd = dup(sfd);
     FILE *fp = fdopen(fd, "w+");
