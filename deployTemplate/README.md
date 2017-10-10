@@ -6,21 +6,28 @@ Template for service creation with docker and kubernetes
 
 ```
 Challenge
-| - src 
+| - src
 | - deployment
 | - solution
 ```
 
 ## Deploy
 
-1. export PROJECT_ID="google platform project ID" 
+1. export PROJECT_ID="google platform project ID"
 1. make container
 1. make push
 1. make deploy
 1. make serve
+
+Alterantive
+
+1. make
 
 ## Delete
 
 1. make deleteKube
 1. make delete
 
+Alternative
+
+1. make clean
