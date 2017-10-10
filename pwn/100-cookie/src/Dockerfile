@@ -13,5 +13,4 @@ RUN ls
 RUN mkdir -p /var/run/cookie
 
 EXPOSE 53000
-
-CMD ["./cookie"]
+CMD ["gdb", "-ex", "run", "./cookie"]  

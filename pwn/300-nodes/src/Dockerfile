@@ -1,6 +1,6 @@
 FROM ubuntu:xenial
 
-run apt-get update -y
+run apt-get update
 run apt-get install build-essential gcc-multilib xinetd -y
 run apt-get clean
 
