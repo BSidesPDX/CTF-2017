@@ -1,0 +1,9 @@
+service leek
+{
+        disable         = no
+        flags           = REUSE
+        socket_type     = stream
+        wait            = no
+        user            = nobody
+        server          = /opt/leek/leek
+}
