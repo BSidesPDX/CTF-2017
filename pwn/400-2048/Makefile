@@ -13,6 +13,7 @@ clean: deleteDocker deleteKube
 # Docker Configurations
 
 container:
+	make -C src
 	docker build --no-cache --tag ${CONTAINER_TAG} src
 
 push: 
