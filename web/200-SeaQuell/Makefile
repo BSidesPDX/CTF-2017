@@ -17,10 +17,6 @@ container:
 push: 
 	gcloud docker -- push ${CONTAINER_TAG}
 
-test:
-	gcloud docker -- pull ${CONTAINER_TAG}
-	gcloud container images list --repository ${REGISTRY}/${PROJECT_ID}
-
 deleteDocker:
 	gcloud container images delete ${CONTAINER_TAG}
 

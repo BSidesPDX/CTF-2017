@@ -8,6 +8,7 @@ CONTAINER_TAG := ${REGISTRY}/${PROJECT_ID}/${DOCKER_IMAGE}
 target: container push deploy serve
 
 clean: deleteDocker deleteKube
+	make -C src clean
 
 # Docker Configurations
 
@@ -16,10 +17,6 @@ container:
 
 push: 
 	gcloud docker -- push ${CONTAINER_TAG}
-
-test:
-	gcloud docker -- pull ${CONTAINER_TAG}
-	gcloud container images list --repository ${REGISTRY}/${PROJECT_ID}
 
 deleteDocker:
 	gcloud container images delete ${CONTAINER_TAG}
