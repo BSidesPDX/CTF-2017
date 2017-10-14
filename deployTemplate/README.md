@@ -6,9 +6,10 @@ Template for service creation with docker and kubernetes
 
 ```
 Challenge
-| - src
+| - aws
 | - deployment
 | - solution
+| - src
 ```
 
 ## Deploy
@@ -21,6 +22,7 @@ Challenge
 
 Alterantive
 
+1. export PROJECT_ID="google platform project ID"
 1. make
 
 ## Delete
@@ -31,3 +33,7 @@ Alterantive
 Alternative
 
 1. make clean
+
+## AWS
+
+View aws/
