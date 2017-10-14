@@ -1,7 +1,7 @@
 target: pwn shellcode web
 
 pwn:
-	make -C ./pwn/100-cookies/src
+	make -C ./pwn/100-cookie/src
 	make -C ./pwn/200-leek/src
 	make -C ./pwn/300-nodes/src
 	make -C ./pwn/400-2048/src
