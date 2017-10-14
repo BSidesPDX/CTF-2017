@@ -17,7 +17,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      name: quickstart
+      app: quickstart
   ingress:
   - ports:
     - port: 80
