@@ -2,7 +2,9 @@
 
 Challenges built by: [TTimzen](https://twitter.com/TTimzen) & [pwnpnw](https://twitter.com/pwnpnw)
 
-Infrastructure support provided by: [yalam96](https://twitter.com/yalam96), [andrewkrug](https://twitter.com/andrewkrug), [CornflakeSavage](https://twitter.com/CornflakeSavage). [Bsides-Infra](https://github.com/flamingspaz/bsides-infra)
+Infrastructure support provided by: [yalam96](https://twitter.com/yalam96), [andrewkrug](https://twitter.com/andrewkrug), [CornflakeSavage](https://twitter.com/CornflakeSavage).
+
+Infrastructure: [Bsides-Infra](https://github.com/flamingspaz/bsides-infra)
 
 ## Challenges
 
@@ -35,6 +37,10 @@ To locally test, deploy or play challenges with Docker, run the following
 1. Containers are viewable at localhost:PORT (view with docker-compose ps)
 1. `docker-compose kill` to stop the containers
 1. `make clean` to clean the source folders
+
+## GCP
+
+You can also deploy via GCP and run the challenges in k8s. All of this is in `category/challenge/Makefile` to deploy.
 
 ## BSidesPDX
 
