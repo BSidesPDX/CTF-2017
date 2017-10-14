@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pwn100
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: pwn100
+      labels:
+        app: pwn100
+    spec:
+      containers:
+        - name: pwn100
+          image: bsidespdx/pwn100
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
