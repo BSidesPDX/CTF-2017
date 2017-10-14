@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "xordoz.h"
 
 //run xor.py and get the ord string
 int ords[] = {};
+
 
 void decode(char *chr)
 {
