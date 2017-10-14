@@ -5,7 +5,6 @@
 //run xor.py and get the ord string
 int ords[] = {};
 
-
 void decode(char *chr)
 {
     *chr = (char)(*chr ^ 0x41);
@@ -13,11 +12,12 @@ void decode(char *chr)
 
 void secret()
 {
-   char str[16];
+   int len = (sizeof(ords)/sizeof(ords[0]))+1;
+   char str[len];
    int i = 0;
-   if (fgets(str, 16, stdin) != NULL)
+   if (fgets(str, len, stdin) != NULL)
    {
-        if (strlen(str) != 15)
+        if (strlen(str) != len-1)
            exit(0);
         for (i=0;i<strlen(str);i++)
         {
