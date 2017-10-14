@@ -9,6 +9,7 @@ CFLAGS=-fno-stack-protector -zexecstack -m32
 	cp highscore.cpp 2k48/.
 	cp highscore.h 2k48/.
 	cd 2k48; make DAEMON=1 
+	cd 2K48; strip 2k48
 
 clean:
 	rm -rf 2k48/
