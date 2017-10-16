@@ -18,7 +18,7 @@ int main() {
     char *line;
     char *mem,*memptr;
     int pid;
-    //alarm(5);
+    alarm(5);
     printf("How much to move?\n");
     fflush(stdout);
     scanf("%d",&len);
