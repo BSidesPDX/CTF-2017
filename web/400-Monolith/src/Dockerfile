@@ -5,7 +5,8 @@ WORKDIR /
 
 ADD rfcsearch /
 ADD index.txt /
-ADD rfcs /
+RUN mkdir rfc
+ADD rfcs /rfc
 ADD flag /
 
 # Open port 5001 for serving the webpage, mapped to 80 by container engine

