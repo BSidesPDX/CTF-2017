@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web400
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: web400
+      labels:
+        app: web400
+    spec:
+      containers:
+        - name: web400
+          image: bsidespdx/web400
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
