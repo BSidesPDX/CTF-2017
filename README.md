@@ -48,4 +48,4 @@ CTF was ran during [BSidesPDX 2017](https://bsidespdx.org/events/2017/contests-e
 
 We used [CTFd](https://ctfd.io/) for the scoreboard hosted at [BSidesPDXCTF.party](https://bsidespdxctf.party/).
 
-`category/challenge/aws/Makefile` was used to deploy to a k8s cluster in AWS. We had intended to use the GCP deployment and moved to this by creating our own cluster with the help from the above infra supporters.
+`category/challenge/aws/Makefile` was used to deploy to a k8s pod in AWS. We had intended to use the GCP deployment and moved to this by creating our own cluster with the help from the above infra supporters.
