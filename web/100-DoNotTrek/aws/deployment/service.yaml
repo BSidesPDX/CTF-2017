@@ -20,5 +20,5 @@ spec:
       app: web100
   ingress:
   - ports:
-    - port: 80
+    - port: 5000
     from: []
