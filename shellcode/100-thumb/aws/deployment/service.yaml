@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shellcode100
+spec:
+  ports:
+   - port: 31337
+     targetPort: 31337
+  selector:
+    app: shellcode100
+  type: LoadBalancer
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: shellcode100
+spec:
+  podSelector:
+    matchLabels:
+      app: shellcode100
+  ingress:
+  - ports:
+    - port: 31337
+    from: []
