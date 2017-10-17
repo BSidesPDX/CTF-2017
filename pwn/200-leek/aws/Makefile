@@ -6,10 +6,12 @@ CONTAINER_TAG := ${REGISTRY}/${DOCKER_IMAGE}
 target: container push deploy serve
 
 clean: deleteDocker deleteKube
+	make -C ../src clean
 
 # Docker Configurations
 
 container:
+	make -C ../src
 	docker build --no-cache --tag ${CONTAINER_TAG} ../src
 
 push: 
