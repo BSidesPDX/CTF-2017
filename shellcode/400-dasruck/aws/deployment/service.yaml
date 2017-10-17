@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shellcode400
+spec:
+  ports:
+   - port: 5050
+     targetPort: 5050
+  selector:
+    app: shellcode400
+  type: LoadBalancer
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: shellcode400
+spec:
+  podSelector:
+    matchLabels:
+      app: shellcode400
+  ingress:
+  - ports:
+    - port: 5050
+    from: []

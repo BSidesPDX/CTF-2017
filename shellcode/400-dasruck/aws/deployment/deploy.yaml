@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shellcode400
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: shellcode400
+      labels:
+        app: shellcode400
+    spec:
+      containers:
+        - name: shellcode400
+          image: bsidespdx/shellcode400
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
