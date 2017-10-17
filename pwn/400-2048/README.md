@@ -1,4 +1,8 @@
-# Description
+# 2048
+
+Provide binary (2048), host and port
+
+## Description
 
 Can you get the highscore in 2048?
 

@@ -1,4 +1,8 @@
-# Description
+# Cookie
+
+Provider cookie (binary), host and port
+
+## Description
 
 Cookie monster likes 0xC0ff33. Can you please him and get a shell to read the flag?
 
