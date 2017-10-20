@@ -11,7 +11,7 @@ int child_main(int sd)		//handler for incoming connections
 {
 	int choice = 0;
 	FILE *fp;
-	char path[1000];
+	char path[10000];
 	char bin[100];
 
 	if (choice != 2) {
@@ -35,59 +35,12 @@ int child_main(int sd)		//handler for incoming connections
 			break;
             
 		case 80:
-			write(sd, "\n\nH", 4);
-			usleep(60000);
-			write(sd, "i", 1);
-			usleep(60000);
-			write(sd, "d", 1);
-			usleep(60000);
-			write(sd, "d", 1);
-			usleep(60000);
-			write(sd, "e", 1);
-			usleep(60000);
-			write(sd, "n", 1);
-			usleep(60000);
-			write(sd, " ", 1);
-			usleep(60000);
-			write(sd, "c", 1);
-			usleep(60000);
-			write(sd, "o", 1);
-			usleep(60000);
-			write(sd, "m", 1);
-			usleep(60000);
-			write(sd, "m", 1);
-			usleep(60000);
-			write(sd, "a", 1);
-			usleep(60000);
-			write(sd, "n", 1);
-			usleep(60000);
-			write(sd, "d", 1);
-			usleep(60000);
-			write(sd, " ", 1);
-			usleep(60000);
-			write(sd, "d", 1);
-			usleep(60000);
-			write(sd, "e", 1);
-			usleep(60000);
-			write(sd, "t", 1);
-			usleep(60000);
-			write(sd, "e", 1);
-			usleep(60000);
-			write(sd, "c", 1);
-			usleep(60000);
-			write(sd, "t", 1);
-			usleep(60000);
-			write(sd, "e", 1);
-			usleep(60000);
-			write(sd, "d", 1);
-			usleep(60000);
 			write(sd, "!\n\n", 4);
 			usleep(60000);
 			write(sd, "Enter a short message to share with BSidesPDX (please allow 10 seconds) => ", 75);
 			fflush(stdin);
 			sgstatd(sd);
-
-			cookie_writes(sd, "\nRequest Completed!\n\n");
+			cookie_writes(sd, "\nNot implemented\n\n");
 			break;
 
 		default:
