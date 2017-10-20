@@ -6,7 +6,7 @@ run apt-get clean
 
 # Add files to container
 WORKDIR /opt/
-ADD flag /opt/
+ADD flag /
 ADD nodes.service /etc/xinetd.d/nodes
 ADD nodes /opt/nodes
 

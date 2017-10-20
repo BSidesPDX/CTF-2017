@@ -6,7 +6,7 @@ run apt-get clean
 
 # Add files to container
 WORKDIR /opt/cookie
-COPY flag /opt/cookie/
+COPY flag /
 COPY cookie /opt/cookie/cookie
 RUN ls
 

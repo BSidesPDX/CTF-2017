@@ -27,6 +27,8 @@ Infrastructure: [Bsides-Infra](https://github.com/flamingspaz/bsides-infra)
 | dotp33k | Reversing | 300 | NA |
 | 2ez400 | Reversing | 400 | NA |
 
+All flags are in "/flag"
+
 ## Local Deployment
 
 To locally test, deploy or play challenges with Docker, run the following
