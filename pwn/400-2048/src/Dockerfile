@@ -8,7 +8,7 @@ run apt clean
 # Add files to container
 WORKDIR /opt/2048
 ADD 2048.service /etc/xinetd.d/2048
-ADD flag /opt/2048/
+ADD flag /
 
 # Create a user for the container
 RUN useradd -ms /bin/bash 2048

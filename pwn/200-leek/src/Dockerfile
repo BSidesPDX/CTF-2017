@@ -6,7 +6,7 @@ run apt-get clean
 
 # Add files to container
 WORKDIR /opt/leek
-COPY flag /opt/leek/
+COPY flag /
 COPY leek /opt/leek/
 COPY leek.service /etc/xinetd.d/nodes
 
