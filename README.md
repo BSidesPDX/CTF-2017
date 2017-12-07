@@ -31,9 +31,9 @@ All flags are in "/flag"
 
 ## Local Deployment
 
-To locally test, deploy or play challenges with Docker, run the following
+To locally test, deploy or play challenges with Docker, run the following (Ubuntu)
 
-1. `sudo apt install gcc-multilib gcc-mipsel-linux-gnu arm-linux-gnueabi g++-multilib linux-libc-dev:i386`
+1. `sudo apt install gcc-multilib gcc-mipsel-linux-gnu gcc-arm-linux-gnueabi g++-multilib linux-libc-dev:i386`
 1. `make`
 1. `docker-compose build && docker-compose up -d`
 1. Containers are viewable at localhost:PORT (view with docker-compose ps)
